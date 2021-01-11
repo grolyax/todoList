@@ -1,7 +1,14 @@
 function checkTask(event) {  // создали работающую кнопку чек, которая зачёркивает задание, если нажата или снимает зачёркивание, если снят "чек"
-    const li = event.target.parentNode;
+    
+   
+    const { target } = event; // через такую запись можно получить несколько свойств объектаБ здесь только свойство target
+                                // вместо   const target = event.target;
+    
+    const { parentNode: li, checked } = target;
+    // const checked =target.checked
+    //const li = target.parentNode;
 
-    if (event.target.checked) {
+    if (checked) {
         li.classList.add('checked');
     } else {
         li.classList.remove('checked');

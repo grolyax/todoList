@@ -1,57 +1,9 @@
-import checkTask from './check-task.js';
 
-//находим форму добавления
+import addTask from './add-task.js';
+
 const addForm = document.querySelector('.add-form > form');
-const todoList = document.querySelector('.todo-list ol');
 
-let tasks = []; //создаём массив, где будут сохранятся наши дела
-
-
-
-function deleteTask(event) {
-    event.target.closest('.delete-btn').parentNode.remove();
-}
-
-
-// вешаем обработчик события submit (отправки) на форму
-addForm.addEventListener('submit', (event) => {
-  // сброс стандатрного поведения отправки формы (очистка засорения адресной строки)
-    event.preventDefault();
-
-    // получаем все поля формы
-    const formData = new FormData(event.target);
-
-    // получаем текст из инпута
-    const todoText = formData.get('text');
-
-    if (!todoText) {
-        return;
-    }
-// добавляем элементы в массив
-    const newTask = {
-        text: todoText,
-        checked: false
-    };
-
-    tasks = [...tasks, newTask]; // создаётся новый объект с задачей и добавляем в массив
-
-    const newTodo = document.createElement('li');
-
-    //newTodo.setAttribute('id', task.length - 1);
-
-    todoList.appendChild(newTodo);
-    newTodo.innerHTML = `<input type="checkbox" id=${tasks.length - 1}> <span>${todoText}</span> <button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i> </button>`;
-
-    const checkbox = document.getElementById(`${tasks.length-1}`);
-    const deleteBtn = document.getElementsByClassName('delete-btn'); 
-    // deleteBtn.addEventListener('click', deleteTask);
-    checkbox.addEventListener('change', checkTask);
-    
-
- 
-    // очищаем форму
-    event.target.reset();
-});
+addForm.addEventListener('submit', addTask);
 
 
 
