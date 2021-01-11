@@ -1,9 +1,13 @@
 
 import addTask from './add-task.js';
+import deleteCheckedTasks from './delete-checked-tasks.js';
 
 const addForm = document.querySelector('.add-form > form');
+const deleteCheckedBtn = document.querySelector('.delete-checked-btn');
+
 
 addForm.addEventListener('submit', addTask);
+deleteCheckedBtn.addEventListener('click', deleteCheckedTasks);
 
 
 
