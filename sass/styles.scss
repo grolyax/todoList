@@ -58,12 +58,14 @@ height: 100vh;
         list-style-type: none;
         margin: 0;
         padding: 0;
+
         li {
             display: flex;
-            span {
+
+            span, input[type="text"] {
                 flex-grow: 1;
             }
-            .delete-btn {
+            .delete-btn, .edit-btn {
                 border: none;
                 background: none;
                 
