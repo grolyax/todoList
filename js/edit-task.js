@@ -8,17 +8,30 @@ function editTask(event) {
     заменяем инпут на спан с новым значением
     */
 
-    const { parentNode: editButton } = event.target;
-    const { parentNode: li } = editButton;
+
+    const li = event.target.closest('li');
 
     const span = li.querySelector('span');
-    const { textContent: text } = li.querySelector('span');
 
-   const input = document.createElement('input');
-   input.setAttribute('value', text);
-   input.setAttribute('type', 'text');
+    if (span) {
+        const { textContent: text } = li.querySelector('span');
 
-   li.replaceChild(input, span);
+        const input = document.createElement('input');
+        input.setAttribute('value', text);
+        input.setAttribute('type', 'text');
+
+        li.replaceChild(input, span);
+
+        return
+    }
+
+    const input = li.querySelector('input[type="text"]');
+    const { value: newText } = input;
+
+    const newSpan = document.createElement('span');
+    newSpan.textContent = newText;
+
+    li.replaceChild(newSpan, input);
 
 }
 
