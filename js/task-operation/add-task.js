@@ -6,6 +6,26 @@ const todoList = document.querySelector('.todo-list ol');
 
 let tasks = []; //создаём массив, где будут сохранятся наши дела
 
+function generateId(task) {
+    const ids = tasks.map(task => {
+        // получаем массив со всеми идентификаторами тасков
+        return task.id
+    });
+
+
+    // если у нас пустой массив, мы начинаем нумерацию с единицы
+    if (!ids.length) {
+        return 1;
+    }
+
+    //находим максимальный id
+    const maxId = Math.max(...ids);
+
+
+    //возвращаем больший, который больше максимального на 1
+    return maxId + 1;
+}
+
 
 
 export default function addTask () {
@@ -23,6 +43,7 @@ export default function addTask () {
       }
   // добавляем элементы в массив
       const newTask = {
+          id: generateId(tasks),
           text: todoText,
           checked: false
       };
@@ -31,14 +52,14 @@ export default function addTask () {
 
       const newTodo = document.createElement('li');
   
-      newTodo.setAttribute('id', `task-${tasks.length}`);
+      newTodo.setAttribute('id', `task-${newTask.id}`);
   
       todoList.appendChild(newTodo);
       newTodo.innerHTML = `<input type="checkbox" id=${tasks.length - 1}><span>${todoText}</span><button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
   
-      const checkbox = document.querySelector(`#task-${tasks.length} > input`);
-      const deleteBtn = document.querySelector(`#task-${tasks.length} .delete-btn`); 
-      const editBtn = document.querySelector(`#task-${tasks.length} .edit-btn`); 
+      const checkbox = document.querySelector(`#task-${newTask.id} > input`);
+      const deleteBtn = document.querySelector(`#task-${newTask.id} .delete-btn`); 
+      const editBtn = document.querySelector(`#task-${newTask.id} .edit-btn`); 
       
       checkbox.addEventListener('change', checkTask);
       deleteBtn.addEventListener('click', deleteTask);
