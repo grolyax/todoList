@@ -1,6 +1,6 @@
 class TaskList {
-    constructor() {
-        this.tasks = [];
+    constructor(tasks) {
+        this.tasks = tasks;
     }
 
     add(newTask) {
@@ -12,7 +12,9 @@ class TaskList {
     }
 }
 
-const taskList = new TaskList();
+const tasks = JSON.parse(localStorage.getItem('tasks'));
+
+const taskList = new TaskList(tasks ? tasks : []);
 
 export default taskList; 
 

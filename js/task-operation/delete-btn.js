@@ -8,6 +8,8 @@ function deleteTask(event) {
     taskList.delete(taskId);
 
     parentNode.remove(); // event.target.closest('.delete-btn').parentNode.remove();  две строчки вместо это длинной через деструктуризацию
+
+    localStorage.setItem('tasks', JSON.stringify(taskList.tasks));
 }
 
 export default deleteTask;

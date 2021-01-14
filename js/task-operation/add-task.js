@@ -27,6 +27,22 @@ function generateId(tasks) {
     return maxId + 1;
 }
 
+export function createTask(task) {
+    const newTodo = document.createElement('li');
+  
+      newTodo.setAttribute('id', `task-${task.id}`);
+  
+      todoList.appendChild(newTodo);
+      newTodo.innerHTML = `<input type="checkbox"><span>${task.text}</span><button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
+  
+      const checkbox = document.querySelector(`#task-${task.id} > input`);
+      const deleteBtn = document.querySelector(`#task-${task.id} .delete-btn`); 
+      const editBtn = document.querySelector(`#task-${task.id} .edit-btn`); 
+      
+      checkbox.addEventListener('change', checkTask);
+      deleteBtn.addEventListener('click', deleteTask);
+      editBtn.addEventListener('click', editTask);
+}
 
 
 export default function addTask () {
@@ -51,22 +67,11 @@ export default function addTask () {
   
       taskList.add(newTask); // создаётся новый объект с задачей и добавляем в массив
 
-      const newTodo = document.createElement('li');
-  
-      newTodo.setAttribute('id', `task-${newTask.id}`);
-  
-      todoList.appendChild(newTodo);
-      newTodo.innerHTML = `<input type="checkbox"><span>${todoText}</span><button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
-  
-      const checkbox = document.querySelector(`#task-${newTask.id} > input`);
-      const deleteBtn = document.querySelector(`#task-${newTask.id} .delete-btn`); 
-      const editBtn = document.querySelector(`#task-${newTask.id} .edit-btn`); 
-      
-      checkbox.addEventListener('change', checkTask);
-      deleteBtn.addEventListener('click', deleteTask);
-      editBtn.addEventListener('click', editTask);
+      createTask(newTask);
       
       // очищаем форму
       event.target.reset();
+
+      localStorage.setItem('tasks', JSON.stringify(taskList.tasks));
   }
   
