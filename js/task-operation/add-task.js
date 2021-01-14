@@ -2,11 +2,12 @@ import checkTask from './check-task.js';
 import deleteTask from './delete-btn.js';
 import editTask from './edit-task.js';
 
+import taskList from '../tasks.js'
+
 const todoList = document.querySelector('.todo-list ol');
 
-let tasks = []; //создаём массив, где будут сохранятся наши дела
 
-function generateId(task) {
+function generateId(tasks) {
     const ids = tasks.map(task => {
         // получаем массив со всеми идентификаторами тасков
         return task.id
@@ -43,19 +44,19 @@ export default function addTask () {
       }
   // добавляем элементы в массив
       const newTask = {
-          id: generateId(tasks),
+          id: generateId(taskList.tasks),
           text: todoText,
           checked: false
       };
   
-      tasks = [...tasks, newTask]; // создаётся новый объект с задачей и добавляем в массив
+      taskList.add(newTask); // создаётся новый объект с задачей и добавляем в массив
 
       const newTodo = document.createElement('li');
   
       newTodo.setAttribute('id', `task-${newTask.id}`);
   
       todoList.appendChild(newTodo);
-      newTodo.innerHTML = `<input type="checkbox" id=${tasks.length - 1}><span>${todoText}</span><button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
+      newTodo.innerHTML = `<input type="checkbox"><span>${todoText}</span><button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
   
       const checkbox = document.querySelector(`#task-${newTask.id} > input`);
       const deleteBtn = document.querySelector(`#task-${newTask.id} .delete-btn`); 
