@@ -13,6 +13,10 @@ function editTask(event) {
 
     const span = li.querySelector('span');
 
+    const icon = li.querySelector('.edit-btn i');
+
+    const checkbox = li.querySelector('input[type]')
+
     if (span) {
         const { textContent: text } = li.querySelector('span');
 
@@ -21,6 +25,10 @@ function editTask(event) {
         input.setAttribute('type', 'text');
 
         li.replaceChild(input, span);
+
+        icon.classlist.remove('fa-edit');
+        icon.classlist.add('fa-save');
+
 
         return
     }
@@ -32,6 +40,8 @@ function editTask(event) {
     newSpan.textContent = newText;
 
     li.replaceChild(newSpan, input);
+
+    checkbox.disabled = true;
 
 }
 
