@@ -1,19 +1,22 @@
-
-import addTask from './task-operation/add-task.js';
+import taskList from './tasks.js';
+import addTask, {createTask} from './task-operation/add-task.js';
 import deleteCheckedTasks from './task-operation/delete-checked-tasks.js';
+
+
+
 
 //находим форму добавления
 const addForm = document.querySelector('.add-form > form');
 const deleteCheckedBtn = document.querySelector('.delete-checked-btn');
 
+
 //вешаем обработчик событий отправки на форму
 addForm.addEventListener('submit', addTask);
 deleteCheckedBtn.addEventListener('click', deleteCheckedTasks);
 
-localStorage.setItem('message', 'Hello Word');
-
-sessionStorage.setItem('message', 'Hello Word');
-
+taskList.tasks.forEach(task => {
+    createTask(task);
+})
 
 
 

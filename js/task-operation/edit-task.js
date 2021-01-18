@@ -1,11 +1,18 @@
 import { ENTER_KEY_CODE } from '../constants.js';
 
-function submitTask(event) {
+
+import taskList from '../tasks.js';
+import { getTaskId } from '../utils.js';
+import storageService from '../storage-service.js';
+
+function submitTask(event) {    // эта функция для enter
     if (event.keyCode !== 13) {
         return;
     }
 
     const li = event.target.closest('li');
+
+    
 
     const icon = li.querySelector('.edit-btn i');
 
@@ -16,22 +23,28 @@ function submitTask(event) {
 }
 
 function saveTask(li, icon, checkbox) {
-    const input = li.querySelector('input[type="checkbox"]');
-    const { value:newTask } = input;
+    const input = li.querySelector('input[type="text"]');
+    const { value:newText } = input;
 
     const newSpan = document.createElement('span');
     newSpan.textContent = newText;
 
     li.replaceChild(newSpan, input);
 
-    icon.classlist.remove('fa-save');
-    icon.classlist.add('fa-edit');
+    icon.classList.remove('fa-save');
+    icon.classList.add('fa-edit');
 
     checkbox.disabled = false;
 
+    const taskId = getTaskId(li); // получаем id утилиты
+
+    taskList.edit(taskId, newText); // заменяем текст при правке
+
+    storageService.set('tasks', JSON.stringify(taskList.tasks)); // заносим в локал сторидж
+
 }
 
-function editTask(event) {
+function editTask(event) {      // эта функция для edit
     /*
     находим span текущего task
     записываем его содержимое в переменную
@@ -67,8 +80,8 @@ function editTask(event) {
         input.value = '';
         input.value = text;
 
-        icon.classlist.remove('fa-edit');
-        icon.classlist.add('fa-save');
+        icon.classList.remove('fa-edit');
+        icon.classList.add('fa-save');
     
         checkbox.disabled = true;
 
