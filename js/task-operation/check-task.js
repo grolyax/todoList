@@ -1,3 +1,6 @@
+import taskList from '../tasks.js';
+import { getTaskId } from '../utils.js';
+
 function checkTask(event) {  // создали работающую кнопку чек, которая зачёркивает задание, если нажата или снимает зачёркивание, если снят "чек"
     
    
@@ -12,7 +15,12 @@ function checkTask(event) {  // создали работающую кнопку
         li.classList.add('checked');
     } else {
         li.classList.remove('checked');
-    }   
+    }  
+    
+    const taskId = getTaskId(li);
+    taskList.check(taskId);
+
+    localStorage.setItem('tasks', JSON.stringify(taskList.tasks));
 }
 
 export default checkTask;
