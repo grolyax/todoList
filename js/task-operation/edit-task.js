@@ -1,7 +1,9 @@
 import { ENTER_KEY_CODE } from '../constants.js';
 
+
 import taskList from '../tasks.js';
 import { getTaskId } from '../utils.js';
+import storageService from '../storage-service.js';
 
 function submitTask(event) {    // эта функция для enter
     if (event.keyCode !== 13) {
@@ -38,7 +40,7 @@ function saveTask(li, icon, checkbox) {
 
     taskList.edit(taskId, newText); // заменяем текст при правке
 
-    localStorage.setItem('tasks', JSON.stringify(taskList.tasks)); // заносим в локал сторидж
+    storageService.set('tasks', JSON.stringify(taskList.tasks)); // заносим в локал сторидж
 
 }
 

@@ -1,6 +1,7 @@
 import checkTask from './check-task.js';
 import deleteTask from './delete-btn.js';
 import editTask from './edit-task.js';
+import storageService from '../storage-service.js';
 
 import taskList from '../tasks.js'
 
@@ -79,6 +80,6 @@ export default function addTask () {
       // очищаем форму
       event.target.reset();
 
-      localStorage.setItem('tasks', JSON.stringify(taskList.tasks));
+      storageService.set('tasks', JSON.stringify(taskList.tasks));
   }
   

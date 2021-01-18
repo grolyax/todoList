@@ -1,3 +1,5 @@
+import storageService from "./storage-service.js";
+
 class TaskList {
     constructor(tasks) {
         this.tasks = tasks;
@@ -32,7 +34,7 @@ class TaskList {
     }
 }
 
-const tasks = JSON.parse(localStorage.getItem('tasks'));
+const tasks = JSON.parse(storageService.get('tasks'));
 
 const taskList = new TaskList(tasks ? tasks : []);
 
