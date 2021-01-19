@@ -14,4 +14,4 @@ const lists = storageService.get('lists');
 
 const listsList = new ListsList(lists || []);
 
-export default taskLists;
+export default ListsList;
