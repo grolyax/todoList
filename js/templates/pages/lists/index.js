@@ -6,18 +6,8 @@ const template =  `
     </form>
 </div>
 
-<ol>
-    <li>
-        <a>List #1</a>
-    </li>
+<ol class="list-of-lists">
 
-    <li>
-        <a>List #2</a>
-    </li>
-
-    <li>
-        <a>List #3</a>
-    </li>
 </ol>
 `;
 

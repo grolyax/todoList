@@ -1,11 +1,11 @@
 import { ENTER_KEY_CODE } from '../constants.js';
 
 
-import taskList from '../tasks.js';
+import listsList from '../lists-list.js';
 import { getTaskId } from '../utils.js';
 import storageService from '../storage-service.js';
 
-function submitTask(event) {    // эта функция для enter
+function submitList(event) {    // эта функция для enter
     if (event.keyCode !== ENTER_KEY_CODE) {
         return;
     }
@@ -19,32 +19,32 @@ function submitTask(event) {    // эта функция для enter
     const checkbox = li.querySelector('input[type="checkbox"]');
 
 
-    saveTask (li, icon, checkbox);
+    saveList (li, icon, checkbox);
 }
 
-function saveTask(li, icon, checkbox) {
+function saveList(li, icon, checkbox) {
     const input = li.querySelector('input[type="text"]');
-    const { value:newText } = input;
+    const { value:newName } = input;
 
-    const newSpan = document.createElement('span');
-    newSpan.textContent = newText;
+    const newLink = document.createElement('a'); // src 
+    newLink.textContent = newName;
 
-    li.replaceChild(newSpan, input);
+    li.replaceChild(newLink, input);
 
     icon.classList.remove('fa-save');
     icon.classList.add('fa-edit');
 
     checkbox.disabled = false;
 
-    const taskId = getTaskId(li); // получаем id утилиты
+    const listId = getTaskId(li); // получаем id утилиты
 
-    taskList.edit(taskId, newText); // заменяем текст при правке
+    listsList.edit(listId, newName); // заменяем текст при правке
 
-    storageService.set('tasks', JSON.stringify(taskList.tasks)); // заносим в локал сторидж
+    storageService.set('lists', JSON.stringify(listsList.lists)); // заносим в локал сторидж
 
 }
 
-function editTask(event) {      // эта функция для edit
+function editList(event) {      // эта функция для edit
     /*
     находим span текущего task
     записываем его содержимое в переменную
@@ -57,28 +57,28 @@ function editTask(event) {      // эта функция для edit
 
     const li = event.target.closest('li');
 
-    const span = li.querySelector('span');
+    const link = li.querySelector('a');
 
     const icon = li.querySelector('.edit-btn i');
 
     const checkbox = li.querySelector('input[type="checkbox"]')
 
-    if (span) {
-        const { textContent: text } = span;
+    if (link) {
+        const { textContent: name } = link;
 
         const input = document.createElement('input');
        
         input.setAttribute('type', 'text');
 
-        input.addEventListener('keydown', submitTask)
+        input.addEventListener('keydown', submitList)
 
-        li.replaceChild(input, span);
+        li.replaceChild(input, link);
 
         input.focus();
         //чтобы курсор был в конце при фокусе
 
         input.value = '';
-        input.value = text;
+        input.value = name;
 
         icon.classList.remove('fa-edit');
         icon.classList.add('fa-save');
@@ -89,8 +89,8 @@ function editTask(event) {      // эта функция для edit
 
 }
 
-saveTask(li, icon, checkbox);
+saveList(li, icon, checkbox);
 
 }
 
-export default editTask
+export default editList
