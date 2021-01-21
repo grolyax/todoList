@@ -1,4 +1,3 @@
-import listList from '../../../lists-list.js';
 
 const template =  `       
 <div class="add-form">
@@ -8,7 +7,7 @@ const template =  `
     </form>
 </div>
 <div class="list-of-lists">
-<ol class="list-of-lists">
+<ol>
 
 </ol>
 </div>

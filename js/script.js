@@ -1,13 +1,19 @@
 import listsTemplate from './templates/pages/lists/index.js';
-import { generateId } from './utils.js';
+import listTemplate from './templates/pages/list/index.js';
+import { generateId, getListIdByUrl } from './utils.js';
 import listsList from './lists-list.js'
-import { addList, createList } from './list-operation/add-list.js';
+
+import addList, { createList } from './list-operation/add-list.js';
+import taskList from './tasks.js';
+import addTask, {createTask} from './task-operation/add-task.js';
+import deleteCheckedTasks from './task-operation/delete-checked-tasks.js';
+ 
 
 const currentUrl = window.location.pathname;
 
 const rootDiv = document.querySelector('.container');
 
-if (currentUrl === '/') {
+function renderLists() {
     rootDiv.innerHTML = listsTemplate;
 
     Array.from(listsList.lists).forEach(list => createList(list)); 
@@ -17,4 +23,40 @@ if (currentUrl === '/') {
     addListForm.addEventListener('submit', addList);
 }
 
- // (маршрутизация) по аналогии с Task доделать - и добавить на  HTML чтоб генерировался из localStorage и работал на добавление вместо 1, 2, 3, раскидать ивенты по папкам (listоперэйшн. есть уже Taskоперайшн)
+if (currentUrl === '/') {
+    renderLists();
+}
+
+
+export  function renderList() {
+    rootDiv.innerHTML = listTemplate;
+    
+    //находим форму добавления
+    const addForm = document.querySelector('.add-form > form');
+    const deleteCheckedBtn = document.querySelector('.delete-checked-btn');
+    
+    //вешаем обработчик событий отправки на форму
+    addForm.addEventListener('submit', addTask);
+    deleteCheckedBtn.addEventListener('click', deleteCheckedTasks);
+    
+    const listId = getListIdByUrl();
+    
+    taskList.tasks.filter((task) => task.parentListId === listId).forEach(task => {
+        createTask(task);  
+    });
+
+ }
+
+ if (currentUrl === '/list/1') {
+    renderList();
+}
+
+ window.addEventListener('popstate', () => {
+    if (window.location.pathname === '/list/1') {
+      renderList();
+    }
+  
+    if (window.location.pathname === '/') {
+      renderLists();
+    }
+  });

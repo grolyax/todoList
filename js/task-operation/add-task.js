@@ -4,12 +4,13 @@ import editTask from './edit-task.js';
 import storageService from '../storage-service.js';
 
 import taskList from '../tasks.js'; 
-import { generateId } from './utils.js';
+import { generateId, getListIdByUrl } from '../utils.js';
 
-const todoList = document.querySelector('.todo-list ol');
 
 
 export function createTask(task) {
+    const todoList = document.querySelector('.todo-list ol');
+
     const newTodo = document.createElement('li');
   
       newTodo.setAttribute('id', `task-${task.id}`);
@@ -34,6 +35,7 @@ export function createTask(task) {
 }
 
 
+
 export default function addTask () {
     // сброс стандатрного поведения отправки формы (очистка засорения адресной строки)
       event.preventDefault();
@@ -50,6 +52,7 @@ export default function addTask () {
   // добавляем элементы в массив
       const newTask = {
           id: generateId(taskList.tasks),
+          parentListId: getListIdByUrl(),
           text: todoText,
           checked: false
       };

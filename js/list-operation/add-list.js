@@ -6,6 +6,8 @@ import storageService from '../storage-service.js';
 import listsList from '../lists-list.js'; 
 import { generateId } from '../utils.js';
 
+import { renderList } from '../script.js';
+
 
 
 
@@ -19,8 +21,18 @@ export function createList(list) {
   
       listsOfList.appendChild(newList);
 
-                                                     //TODO доделать ссылки
-      newList.innerHTML = `<input type="checkbox"><a src=" ">${list.name}</a><button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
+                                                     
+      newList.innerHTML = `<input type="checkbox"><a href="#">${list.name}</a><button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
+
+      const linkToList = newList.querySelector('a');
+
+      linkToList.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        window.history.pushState({}, `/list/${list.id}`, window.location.origin + `/list/${list.id}`);
+      
+        renderList();
+      });
   
       const checkbox = document.querySelector(`#list-${list.id} > input`);
       const deleteBtn = document.querySelector(`#list-${list.id} .delete-btn`); 
@@ -38,7 +50,7 @@ export function createList(list) {
 }
 
 
-export  function addList (event) {
+export  default function addList () {
     
       event.preventDefault();
 
@@ -53,7 +65,6 @@ export  function addList (event) {
       const newList = {
         id: generateId(listsList.lists),
         name: listName,
-        checked: false
       };
   
       listsList.add(newList);    

@@ -6,7 +6,7 @@ export function getTaskId(element) {
 
 export function generateId(tasks) {
 
-    if (!tasks) {
+    if (!tasks.length) {
         return 1;
     }
 
@@ -26,6 +26,15 @@ export function generateId(tasks) {
     //возвращаем больший, который больше максимального на 1
     return maxId + 1;
 }
+
+export function getListIdByUrl() {
+    const currentUrl = window.location.pathname;
+
+    const splittedCyrrentUrl = currentUrl.split('/');
+    
+    return parseInt(splittedCyrrentUrl[splittedCyrrentUrl.length - 1], 10);
+}
+
 
 
 
