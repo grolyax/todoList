@@ -10,7 +10,7 @@ import { generateId } from '../utils.js';
 
 
 export function createList(list) {
-    const listsOfList = document.querySelector('.list-of-lists');
+    const listsOfList = document.querySelector('.list-of-lists ol');
 
     const newList = document.createElement('li');
   
@@ -38,7 +38,7 @@ export function createList(list) {
 }
 
 
-export  function addList () {
+export  function addList (event) {
     
       event.preventDefault();
 

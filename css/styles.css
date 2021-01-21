@@ -38,21 +38,21 @@ body {
     color: white;
     border-radius: 5px; }
 
-.todo-list {
+.todo-list, .list-of-lists {
   flex-grow: 1;
   overflow-y: auto; }
-  .todo-list ol {
+  .todo-list ol, .list-of-lists ol {
     list-style-type: none;
     margin: 0;
     padding: 0; }
-    .todo-list ol li {
+    .todo-list ol li, .list-of-lists ol li {
       display: flex; }
-      .todo-list ol li span, .todo-list ol li input[type="text"] {
+      .todo-list ol li span, .todo-list ol li a, .todo-list ol li input[type="text"], .list-of-lists ol li span, .list-of-lists ol li a, .list-of-lists ol li input[type="text"] {
         flex-grow: 1; }
-      .todo-list ol li .delete-btn, .todo-list ol li .edit-btn {
+      .todo-list ol li .delete-btn, .todo-list ol li .edit-btn, .list-of-lists ol li .delete-btn, .list-of-lists ol li .edit-btn {
         border: none;
         background: none; }
-      .todo-list ol li.checked span {
+      .todo-list ol li.checked span, .todo-list ol li.checked a, .list-of-lists ol li.checked span, .list-of-lists ol li.checked a {
         text-decoration: line-through; }
 
 .delete-checked-wrapper {

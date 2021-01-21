@@ -1,3 +1,5 @@
+import listList from '../../../lists-list.js';
+
 const template =  `       
 <div class="add-form">
     <form>
@@ -5,10 +7,11 @@ const template =  `
         <button type="submit"><i class="fas fa-plus"></i> </button>
     </form>
 </div>
-
+<div class="list-of-lists">
 <ol class="list-of-lists">
 
 </ol>
+</div>
 `;
 
 export default template;
