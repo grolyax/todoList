@@ -7,10 +7,13 @@ const template =  `
     </form>
 </div>
 <div class="list-of-lists">
-<ol>
-
-</ol>
+    <ol></ol>
 </div>
+<div class="delete-checked-wrapper">
+    <button class="delete-checked-btn">Delete Checked</button>
+</div>  
+
 `;
 
 export default template;
+

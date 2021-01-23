@@ -3,10 +3,11 @@ import deleteList from './delete-list.js';
 import editList from './edit-list.js';
 import storageService from '../storage-service.js';
 
+
 import listsList from '../lists-list.js'; 
 import { generateId } from '../utils.js';
 
-import { renderList } from '../script.js';
+import renderList from '../task-operation/renderList.js';
 
 
 
@@ -18,18 +19,16 @@ export function createList(list) {
   
       newList.setAttribute('id', `list-${list.id}`);
 
-  
       listsOfList.appendChild(newList);
-
-                                                     
+                                              
       newList.innerHTML = `<input type="checkbox"><a href="#">${list.name}</a><button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
 
       const linkToList = newList.querySelector('a');
 
       linkToList.addEventListener('click', (event) => {
-        event.preventDefault();
+        event.preventDefault(); // указывает,  если событие не обрабатывается явно, его действие по умолчанию не должно выполняться так, как обычно
 
-        window.history.pushState({}, `/list/${list.id}`, window.location.origin + `/list/${list.id}`);
+        window.history.pushState({}, `/list/${list.id}`, window.location.origin + `/list/${list.id}`); // добавили новое состояние в историю браузера
       
         renderList();
       });
