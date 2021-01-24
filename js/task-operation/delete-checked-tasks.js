@@ -8,7 +8,7 @@ function deleteCheckedTasks(event) {
     checkedTasks.forEach((checkedTask) => {
         const taskId = getTaskId(checkedTask);
         taskList.delete(taskId);
-        
+
         checkedTask.remove();
     });
 

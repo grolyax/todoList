@@ -64,6 +64,7 @@ export  default function addList () {
       const newList = {
         id: generateId(listsList.lists),
         name: listName,
+        checked: false
       };
   
       listsList.add(newList);    

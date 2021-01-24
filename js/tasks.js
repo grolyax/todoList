@@ -13,6 +13,10 @@ class TaskList {
         this.tasks = this.tasks.filter(task => task.id !== id);
     }
 
+    deleteByListId(parentListId) {
+        this.tasks = this.tasks.filter(task => task.parentListId !== parentListId);
+    }
+
     edit(id,text) {
         this.tasks = this.tasks.map(task => {   // map а не forEach потому что операция-мутация, а не перебор
             if (task.id === id) {

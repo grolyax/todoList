@@ -21,6 +21,10 @@ body {
   border-radius: 10px;
   box-shadow: 5px 5px 20px black; }
 
+.home-btn {
+  color: gray;
+  font-size: 30px; }
+
 .add-form form {
   display: flex;
   margin-bottom: 20px; }
