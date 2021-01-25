@@ -17,7 +17,7 @@ export function generateId(tasks) {
 
 
     // если у нас пустой массив, мы начинаем нумерацию с единицы
-  
+
 
     //находим максимальный id
     const maxId = Math.max(...ids);
@@ -31,7 +31,7 @@ export function getListIdByUrl() {
     const currentUrl = window.location.pathname;
 
     const splittedCyrrentUrl = currentUrl.split('/');
-    
+
     return parseInt(splittedCyrrentUrl[splittedCyrrentUrl.length - 1], 10);
 }
 

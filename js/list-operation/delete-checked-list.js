@@ -8,7 +8,7 @@ function deleteCheckedLists(event) {
     const checkedLists = document.querySelectorAll('li.checked');
     checkedLists.forEach((checkedList) => {
         const listId = getTaskId(checkedList);
-        listsList.delete(listId);  
+        listsList.delete(listId);
         taskList.deleteByListId(listId);
 
         checkedList.remove();

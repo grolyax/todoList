@@ -4,7 +4,7 @@ import { getTaskId } from '../utils.js';
 import taskList from '../tasks.js';
 
 function deleteList(event) {
-    const {parentNode} = event.target.closest('.delete-btn');
+    const { parentNode } = event.target.closest('.delete-btn');
 
     const listId = getTaskId(parentNode);
 

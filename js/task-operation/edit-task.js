@@ -11,19 +11,19 @@ function submitTask(event) {    // эта функция для enter
 
     const li = event.target.closest('li');
 
-    
+
 
     const icon = li.querySelector('.edit-btn i');
 
     const checkbox = li.querySelector('input[type="checkbox"]');
 
 
-    saveTask (li, icon, checkbox);
+    saveTask(li, icon, checkbox);
 }
 
 function saveTask(li, icon, checkbox) {
     const input = li.querySelector('input[type="text"]');
-    const { value:newText } = input;
+    const { value: newText } = input;
 
     const newSpan = document.createElement('span');
     newSpan.textContent = newText;
@@ -66,7 +66,7 @@ function editTask(event) {      // эта функция для edit
         const { textContent: text } = span;
 
         const input = document.createElement('input');
-       
+
         input.setAttribute('type', 'text');
 
         input.addEventListener('keydown', submitTask)
@@ -81,14 +81,14 @@ function editTask(event) {      // эта функция для edit
 
         icon.classList.remove('fa-edit');
         icon.classList.add('fa-save');
-    
+
         checkbox.disabled = true;
 
         return
 
-}
+    }
 
-saveTask(li, icon, checkbox);
+    saveTask(li, icon, checkbox);
 
 }
 

@@ -17,7 +17,7 @@ class TaskList {
         this.tasks = this.tasks.filter(task => task.parentListId !== parentListId);
     }
 
-    edit(id,text) {
+    edit(id, text) {
         this.tasks = this.tasks.map(task => {   // map а не forEach потому что операция-мутация, а не перебор
             if (task.id === id) {
                 return { ...task, text: text }; //обратились к нужному объекту с помощью map, скопировали все его свойства, но заменили текст
@@ -42,5 +42,5 @@ const tasks = JSON.parse(storageService.get('tasks'));
 
 const taskList = new TaskList(tasks ? tasks : []);
 
-export default taskList; 
+export default taskList;
 

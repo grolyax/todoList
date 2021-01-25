@@ -3,7 +3,7 @@ import storageService from '../storage-service.js';
 import { getTaskId } from '../utils.js';
 
 function deleteTask(event) {
-    const {parentNode} = event.target.closest('.delete-btn');
+    const { parentNode } = event.target.closest('.delete-btn');
 
     const taskId = getTaskId(parentNode);
 
