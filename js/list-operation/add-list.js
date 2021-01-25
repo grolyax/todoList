@@ -2,15 +2,10 @@ import checkList from './check-list.js';
 import deleteList from './delete-list.js';
 import editList from './edit-list.js';
 import storageService from '../storage-service.js';
-
+import { navigateToUrl } from '../routing.js';
 
 import listsList from '../lists-list.js';
 import { generateId } from '../utils.js';
-
-import renderList from '../task-operation/renderList.js';
-
-
-
 
 export function createList(list) {
   const listsOfList = document.querySelector('.list-of-lists ol');
@@ -28,9 +23,8 @@ export function createList(list) {
   linkToList.addEventListener('click', (event) => {
     event.preventDefault(); // указывает,  если событие не обрабатывается явно, его действие по умолчанию не должно выполняться так, как обычно
 
-    window.history.pushState({}, `/list/${list.id}`, window.location.origin + `/list/${list.id}`); // добавили новое состояние в историю браузера
+    navigateToUrl(`/list/${list.id}`);
 
-    renderList();
   });
 
   const checkbox = document.querySelector(`#list-${list.id} > input`);
@@ -45,9 +39,7 @@ export function createList(list) {
     newList.classList.add('checked');
     checkbox.checked = 'checked';
   }
-
 }
-
 
 export default function addList() {
 
