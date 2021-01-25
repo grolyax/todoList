@@ -27,8 +27,13 @@ height: 100vh;
     box-shadow: 5px 5px 20px black;
 }
 
+.home-btn {
+    color: gray;
+    font-size: 30px;
+}
+
 .add-form {
-    form{
+    form {
         display: flex;
         margin-bottom: 20px;
 
@@ -51,7 +56,7 @@ height: 100vh;
     }
 }
 
-.todo-list {
+.todo-list, .list-of-lists {
     flex-grow: 1;
     overflow-y: auto;
     ol {
@@ -62,7 +67,7 @@ height: 100vh;
         li {
             display: flex;
 
-            span, input[type="text"] {
+            span, a, input[type="text"] {
                 flex-grow: 1;
             }
             .delete-btn, .edit-btn {
@@ -72,7 +77,7 @@ height: 100vh;
             }
 
             &.checked {
-                span {
+                span, a {
                     text-decoration: line-through;
                 }
             }

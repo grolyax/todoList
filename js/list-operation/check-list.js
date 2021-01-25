@@ -1,8 +1,8 @@
-import taskList from '../tasks.js';
+import listsList from '../lists-list.js';
 import { getTaskId } from '../utils.js';
 import storageService from '../storage-service.js';
 
-function checkTask(event) {  // создали работающую кнопку чек, которая зачёркивает задание, если нажата или снимает зачёркивание, если снят "чек"
+function checkList(event) {  // создали работающую кнопку чек, которая зачёркивает задание, если нажата или снимает зачёркивание, если снят "чек"
 
 
     const { target } = event; // через такую запись можно получить несколько свойств объектаБ здесь только свойство target
@@ -18,10 +18,10 @@ function checkTask(event) {  // создали работающую кнопку
         li.classList.remove('checked');
     }
 
-    const taskId = getTaskId(li);
-    taskList.check(taskId);
+    const listId = getTaskId(li);
+    listsList.check(listId);
 
-    storageService.set('tasks', JSON.stringify(taskList.tasks));
+    storageService.set('lists', JSON.stringify(listsList.lists));
 }
 
-export default checkTask;
+export default checkList;

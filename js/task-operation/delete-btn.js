@@ -1,14 +1,15 @@
 import taskList from '../tasks.js';
 import storageService from '../storage-service.js';
+import { getTaskId } from '../utils.js';
 
 function deleteTask(event) {
-    const {parentNode} = event.target.closest('.delete-btn');
+    const { parentNode } = event.target.closest('.delete-btn');
 
-    const taskId = parseInt(parentNode.id.split('-')[1],10);
+    const taskId = getTaskId(parentNode);
 
-    taskList.delete(taskId);
+    taskList.delete(taskId); // 
 
-    parentNode.remove(); // event.target.closest('.delete-btn').parentNode.remove();  две строчки вместо это длинной через деструктуризацию
+    parentNode.remove(); // удаляем из HTML саму строку (элемент дома)         event.target.closest('.delete-btn').parentNode.remove();  две строчки вместо это длинной через деструктуризацию
 
     storageService.set('tasks', JSON.stringify(taskList.tasks));
 }
