@@ -1,5 +1,5 @@
 import listsList from '../lists-list.js';
-import { getTaskId } from '../utils.js';
+import { getId } from '../utils.js';
 import storageService from '../storage-service.js';
 
 function checkList(event) {  // создали работающую кнопку чек, которая зачёркивает задание, если нажата или снимает зачёркивание, если снят "чек"
@@ -18,7 +18,7 @@ function checkList(event) {  // создали работающую кнопку
         li.classList.remove('checked');
     }
 
-    const listId = getTaskId(li);
+    const listId = getId(li);
     listsList.check(listId);
 
     storageService.set('lists', JSON.stringify(listsList.lists));

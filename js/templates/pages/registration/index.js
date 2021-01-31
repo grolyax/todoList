@@ -3,14 +3,17 @@ const template = `
         <form>
             <label>Email</label>
             <input name="email" />
+            <span class="error"></span>
 
             <label>Password</label>
             <input name="password" type="password" />
-            
+            <span class="error"></span>
+
             <label>Repeat Password</label>
             <input name="repeatPassword" type="password" />
+            <span class="error"></span>
 
-            <button type="submit">Register</button>
+            <button class="button-registration" type="submit">Register</button> 
         </form>
     </div>
 `;

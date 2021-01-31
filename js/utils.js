@@ -1,4 +1,4 @@
-export function getTaskId(element) {
+export function getId(element) {
     return parseInt(element.id.split('-')[1]);
 } //"task-1" -> 1 (split разбивает на части и делает из них массив, и из массива мы берём второй элемент, а parseInt делает из значения число)
 

@@ -17,7 +17,12 @@ export function createTask(task) {
 
     todoList.appendChild(newTodo);
 
-    newTodo.innerHTML = `<input type="checkbox"><span>${task.text}</span><button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
+    newTodo.innerHTML = `
+    <input type="checkbox">
+    <span>${task.text}</span>
+    <button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button>
+    <button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    `;
 
     const checkbox = document.querySelector(`#task-${task.id} > input`);
     const deleteBtn = document.querySelector(`#task-${task.id} .delete-btn`);

@@ -3,9 +3,10 @@ import deleteList from './delete-list.js';
 import editList from './edit-list.js';
 import storageService from '../storage-service.js';
 import { navigateToUrl } from '../routing.js';
-
+import currentUser from '../current-user.js';
 import listsList from '../lists-list.js';
 import { generateId } from '../utils.js';
+
 
 export function createList(list) {
   const listsOfList = document.querySelector('.list-of-lists ol');
@@ -16,7 +17,12 @@ export function createList(list) {
 
   listsOfList.appendChild(newList);
 
-  newList.innerHTML = `<input type="checkbox"><a href="#">${list.name}</a><button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
+  newList.innerHTML = `
+  <input type="checkbox">
+  <a href="#">${list.name}</a>
+  <button class="edit-btn"><i class="fa fa-edit" aria-hidden="true"></i></button>
+  <button class="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+  `;
 
   const linkToList = newList.querySelector('a');
 
@@ -41,8 +47,7 @@ export function createList(list) {
   }
 }
 
-export default function addList() {
-
+export function addList(event) {
   event.preventDefault();
 
   const formData = new FormData(event.target);
@@ -51,10 +56,11 @@ export default function addList() {
 
   if (!listName) {
     return;
-  }
+  }   //этот блок???
 
   const newList = {
     id: generateId(listsList.lists),
+    userId: currentUser.userData.id,
     name: listName,
     checked: false
   };

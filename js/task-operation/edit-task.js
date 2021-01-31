@@ -1,7 +1,7 @@
 import { ENTER_KEY_CODE } from '../constants.js';
 
 import taskList from '../tasks.js';
-import { getTaskId } from '../utils.js';
+import { getId } from '../utils.js';
 import storageService from '../storage-service.js';
 
 function submitTask(event) {    // эта функция для enter
@@ -11,12 +11,9 @@ function submitTask(event) {    // эта функция для enter
 
     const li = event.target.closest('li');
 
-
-
     const icon = li.querySelector('.edit-btn i');
 
     const checkbox = li.querySelector('input[type="checkbox"]');
-
 
     saveTask(li, icon, checkbox);
 }
@@ -35,7 +32,7 @@ function saveTask(li, icon, checkbox) {
 
     checkbox.disabled = false;
 
-    const taskId = getTaskId(li); // получаем id утилиты
+    const taskId = getId(li); // получаем id утилиты
 
     taskList.edit(taskId, newText); // заменяем текст при правке
 
@@ -75,7 +72,6 @@ function editTask(event) {      // эта функция для edit
 
         input.focus();
         //чтобы курсор был в конце при фокусе
-
         input.value = '';
         input.value = text;
 
@@ -92,4 +88,4 @@ function editTask(event) {      // эта функция для edit
 
 }
 
-export default editTask
+export default editTask;
