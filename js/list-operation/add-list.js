@@ -6,6 +6,7 @@ import { navigateToUrl } from '../routing.js';
 import currentUser from '../current-user.js';
 import listsList from '../lists-list.js';
 import { generateId } from '../utils.js';
+import logoutUser from '../auth/logout-user.js';
 
 
 export function createList(list) {
@@ -36,10 +37,14 @@ export function createList(list) {
   const checkbox = document.querySelector(`#list-${list.id} > input`);
   const deleteBtn = document.querySelector(`#list-${list.id} .delete-btn`);
   const editBtn = document.querySelector(`#list-${list.id} .edit-btn`);
+  const logoutBtn = document.querySelector('.logout-btn');
+  const loginCurrentUser = document.querySelector('.email-user');
 
   checkbox.addEventListener('change', checkList);
   deleteBtn.addEventListener('click', deleteList);
   editBtn.addEventListener('click', editList);
+  logoutBtn.addEventListener('click', logoutUser);
+  loginCurrentUser.textContent = currentUser.userData.email;
 
   if (list.checked) {
     newList.classList.add('checked');
