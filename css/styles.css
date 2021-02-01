@@ -107,7 +107,7 @@ body {
     height: 30px;
     font-size: medium;
     outline: black; }
-  .registration-form form .register-link, .login-form form .register-link {
+  .registration-form form .register-link, .registration-form form .login-link, .login-form form .register-link, .login-form form .login-link {
     margin-top: 20px;
     border: solid 1px lightblue;
     border-radius: 5px;

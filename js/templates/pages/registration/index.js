@@ -14,6 +14,7 @@ const template = `
             <span class="error"></span>
 
             <button class="button-registration" type="submit">Register</button> 
+            <a class="login-link" href="/login">Login</a>
         </form>
     </div>
 `;
