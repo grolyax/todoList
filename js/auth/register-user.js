@@ -3,6 +3,8 @@ import storageService from '../storage-service.js';
 import { navigateToUrl } from '../routing.js';
 import { generateId } from '../utils.js';
 import currentUser from '../current-user.js';
+import { checkIfHasErrors } from '../utils.js';
+import { showErrors } from '../utils.js';
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/; //регулярное выражение для проверки, емэйла
 const MIN_PASSWORD_LENGTH = 8;
@@ -64,22 +66,10 @@ export default function registerUser(event) {
     const repeatPassword = formData.get('repeatPassword');
 
     const errors = validateRegistration({ email, password, repeatPassword });
+    
+    showErrors(errors);
 
-    let hasErrors = false;
-
-    for (let key in errors) {
-        const span = document.querySelector(`input[name="${key}"] + span`);
-
-        if (errors[key].length > 0) {
-            hasErrors = true;
-
-            const errorStr = errors[key].join('<br>'); //перебрали  одной строкой и каждую новую строку с абзаца
-
-            span.innerHTML = errorStr;
-        } else {
-            span.innerHTML = '';
-        }
-    }
+    const hasErrors = checkIfHasErrors(errors);
 
     if (hasErrors) {
         return;

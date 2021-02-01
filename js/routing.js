@@ -17,8 +17,8 @@ const LOGIN_URL = '/login';
 export function renderPage() {
   const { pathname: currentUrl } = window.location;
 
-  if (currentUrl === REGISTRATION_URL) {
-    if (currentUser.userData !== null) {
+  if (currentUrl === REGISTRATION_URL) { // можно упростить вынести одинаковые проверки (!currentUser.userData && currentUrl === REGISTRATION_URL), тогда if  уже не нужен - ушёл сюда, а только navigateToUrl('/') поставить в самом конце, чтоб было для null
+    if (currentUser.userData !== null) { // здесь могла бы быть или запись (!currentUser.userData) - это тоже самое
       navigateToUrl('/');
     } else {
       renderRegistration();
@@ -27,8 +27,8 @@ export function renderPage() {
     return;
   }
 
-  if (currentUrl === LOGIN_URL) {
-    if (currentUser.userData !== null) {
+  if (currentUrl === LOGIN_URL) { // можно упростить вынести одинаковые проверки (!currentUser.userData && currentUrl === LOGIN_URL)
+    if (currentUser.userData !== null) {  // здесь могла бы быть или запись (!currentUser.userData) - это тоже самое
       navigateToUrl('/');
     } else {
       renderLogin();
@@ -58,6 +58,7 @@ export function renderPage() {
     if (list.userId !== currentUser.userData.id) {
       navigateToUrl('/');
     } else {
+
       renderList();
     }
 

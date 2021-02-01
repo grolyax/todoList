@@ -2,6 +2,8 @@ import userList from '../users.js';
 import { navigateToUrl } from '../routing.js';
 import currentUser from '../current-user.js';
 import storageService from '../storage-service.js';
+import { checkIfHasErrors } from '../utils.js';
+import  { showErrors } from '../utils.js';
 
 function validateLogin({ user, password }) {
     let errors = {
@@ -15,14 +17,12 @@ function validateLogin({ user, password }) {
 
     const hashedPassword = CryptoJS.SHA3(password).toString();
 
-    if (user && user.password !== hashedPassword) {
+    if (user && user.password !== hashedPassword) { 
         errors = { ...errors, password: [...errors.password, 'Password does not match.'] }
     }
         
     return errors;
 }
-
-
 
 
 export default function loginUser(event) {
@@ -37,26 +37,13 @@ export default function loginUser(event) {
 
     const errors = validateLogin({ user, password });
 
-    let hasErrors = false;
+    showErrors(errors);
 
-    for (let key in errors) {
-        const span = document.querySelector(`input[name="${key}"] + span`);
-
-        if (errors[key].length > 0) {
-            hasErrors = true;
-
-            const errorStr = errors[key].join('<br>'); //перебрали  одной строкой и каждую новую строку с абзаца
-
-            span.innerHTML = errorStr;
-        } else {
-            span.innerHTML = '';
-        }
-    }
+    const hasErrors = checkIfHasErrors(errors);
 
     if (hasErrors) {
         return;
-    }
-
+    } 
 
     currentUser.login(user);
     storageService.set('currentUser', JSON.stringify(user));
