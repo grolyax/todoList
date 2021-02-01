@@ -1,8 +1,7 @@
 import { ENTER_KEY_CODE } from '../constants.js';
 
-
 import listsList from '../lists-list.js';
-import { getTaskId } from '../utils.js';
+import { getId } from '../utils.js';
 import storageService from '../storage-service.js';
 
 function submitList(event) {    // эта функция для enter
@@ -36,7 +35,7 @@ function saveList(li, icon, checkbox) {
 
     checkbox.disabled = false;
 
-    const listId = getTaskId(li); // получаем id утилиты
+    const listId = getId(li); // получаем id утилиты
 
     listsList.edit(listId, newName); // заменяем текст при правке
 

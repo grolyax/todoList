@@ -1,5 +1,10 @@
 const template = `
-    <a class="home-btn" href="/"><i class="fas fa-long-arrow-alt-left"></i></a>
+<span class="email-user"></span>
+<div class="logout">
+    <a class="home-btn" href="/"><i class="fas fa-long-arrow-alt-left"></i></a> 
+    <button class="logout-btn">LogOut</button>
+</div>
+    
     <div class="add-form">
         <form>
             <input type="text" name="text" placeholder="Enter task...">

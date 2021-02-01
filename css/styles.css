@@ -2,10 +2,15 @@ html, body {
   margin: 0;
   padding: 0; }
 
+h1 {
+  color: #a3d6ff;
+  text-shadow: 3px 3px 5px #050129; }
+
 body {
   background: #05005d;
   background: linear-gradient(90deg, #05005d 0%, #090979 35%, #00d4ff 100%);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh; }
@@ -19,7 +24,12 @@ body {
   overflow-y: auto;
   width: 500px;
   border-radius: 10px;
-  box-shadow: 5px 5px 20px black; }
+  box-shadow: 5px 5px 20px #050129; }
+
+.email-user {
+  text-align: end;
+  color: cornflowerblue;
+  text-decoration: underline; }
 
 .home-btn {
   color: gray;
@@ -38,7 +48,7 @@ body {
     margin-left: 10px;
     width: 38px;
     border: none;
-    background: #00d4ff;
+    background: #a3d6ff;
     color: white;
     border-radius: 5px; }
 
@@ -62,5 +72,50 @@ body {
 .delete-checked-wrapper {
   display: flex;
   justify-content: flex-end; }
+
+.logout {
+  display: flex;
+  justify-content: space-between; }
+
+.logout, .logout-lists {
+  margin-bottom: 20px;
+  margin-top: 10px; }
+  .logout .logout-btn, .logout-lists .logout-btn {
+    width: 100px;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    border: solid 1px cornflowerblue;
+    height: 30px; }
+
+.logout-lists {
+  display: flex;
+  justify-content: flex-end; }
+
+.registration-form form, .login-form form {
+  display: flex;
+  flex-direction: column; }
+  .registration-form form label, .login-form form label {
+    margin-top: 10px;
+    margin-bottom: 5px; }
+  .registration-form form input, .login-form form input {
+    height: 25px; }
+  .registration-form form .button-registration, .login-form form .button-registration {
+    margin-top: 20px;
+    background: lightblue;
+    border-radius: 5px;
+    border: lightblue;
+    height: 30px;
+    font-size: medium;
+    outline: black; }
+  .registration-form form .register-link, .registration-form form .login-link, .login-form form .register-link, .login-form form .login-link {
+    margin-top: 20px;
+    border: solid 1px lightblue;
+    border-radius: 5px;
+    background-color: lightblue;
+    text-align: center;
+    height: 25px; }
+
+.error {
+  color: red; }
 
 /*# sourceMappingURL=styles.css.map */

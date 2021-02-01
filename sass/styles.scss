@@ -2,16 +2,19 @@ html, body {
     margin: 0;
     padding: 0;
 }
+h1 {
+    color: #a3d6ff;
+    text-shadow: 3px 3px 5px #050129;
+}
 
 body {
     background: rgb(5,0,93);
     background: linear-gradient(90deg, rgba(5,0,93,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-
-display: flex;
-justify-content: center;
-align-items: center;
-
-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
@@ -24,7 +27,13 @@ height: 100vh;
     overflow-y: auto;
     width: 500px;
     border-radius: 10px;
-    box-shadow: 5px 5px 20px black;
+    box-shadow: 5px 5px 20px #050129;
+}
+
+.email-user {
+    text-align: end;
+    color: cornflowerblue;
+    text-decoration: underline;
 }
 
 .home-btn {
@@ -49,7 +58,7 @@ height: 100vh;
             margin-left: 10px;
             width: 38px;
             border: none;
-            background: #00d4ff;
+            background: #a3d6ff;
             color: white;
             border-radius: 5px;
         }
@@ -91,4 +100,64 @@ height: 100vh;
     display: flex;
     justify-content: flex-end;
     }
+}
+
+.logout {
+    display: flex;
+    justify-content: space-between;
+}
+.logout, .logout-lists {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    .logout-btn {
+        width: 100px;
+        background-color: cornflowerblue;
+        border-radius: 5px;
+        border: solid 1px cornflowerblue;
+        height: 30px;
+    }
+}
+
+.logout-lists {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.registration-form, .login-form {
+    form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        input {
+            height: 25px;
+        }
+
+        .button-registration {
+            margin-top: 20px;
+            background: lightblue;
+            border-radius: 5px;
+            border: lightblue;
+            height: 30px;
+            font-size: medium;
+            outline: black;
+        }
+
+        .register-link, .login-link {
+            margin-top: 20px;
+            border: solid 1px lightblue;
+            border-radius: 5px;
+            background-color: lightblue;
+            text-align: center;
+            height: 25px;
+        }
+    }
+}
+
+.error {
+    color: red;
 }

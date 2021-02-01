@@ -8,4 +8,4 @@ class StorageService {
     }
 }
 
-export default new StorageService;
+export default new StorageService();

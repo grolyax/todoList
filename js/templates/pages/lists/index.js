@@ -1,5 +1,10 @@
 
-const template =  `       
+const template =  `  
+<span class="email-user"></span>
+<div class="logout-lists">
+    <button class="logout-btn">LogOut</button>
+</div>
+<hr>     
 <div class="add-form">
     <form>
         <input type="text" name="name" placeholder="Enter list name...">

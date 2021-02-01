@@ -1,11 +1,11 @@
 import taskList from '../tasks.js';
 import storageService from '../storage-service.js';
-import { getTaskId } from '../utils.js';
+import { getId } from '../utils.js';
 
 function deleteTask(event) {
     const { parentNode } = event.target.closest('.delete-btn');
 
-    const taskId = getTaskId(parentNode);
+    const taskId = getId(parentNode);
 
     taskList.delete(taskId); // 
 
