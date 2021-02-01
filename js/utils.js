@@ -8,16 +8,12 @@ export function generateId(tasks) {
 
     if (!tasks.length) {
         return 1;
-    }
+    }  // если у нас пустой массив, мы начинаем нумерацию с единицы
 
     const ids = tasks.map(task => {
         // получаем массив со всеми идентификаторами тасков
         return task.id
     });
-
-
-    // если у нас пустой массив, мы начинаем нумерацию с единицы
-
 
     //находим максимальный id
     const maxId = Math.max(...ids);

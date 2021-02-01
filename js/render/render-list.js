@@ -7,20 +7,22 @@ import { getListIdByUrl } from '../utils.js';
 
 export default function renderList() {
     const rootDiv = document.querySelector('.container');
-    
+
     rootDiv.innerHTML = listTemplate;
 
     const addForm = document.querySelector('.add-form > form');  //находим форму добавления
-    const deleteCheckedBtn = document.querySelector('.delete-checked-btn');
 
     addForm.addEventListener('submit', addTask);    //вешаем обработчик событий отправки на форму
+
+    const deleteCheckedBtn = document.querySelector('.delete-checked-btn');
+
     deleteCheckedBtn.addEventListener('click', deleteCheckedTasks);
 
     const listId = getListIdByUrl();
 
     taskList.tasks
-    .filter((task) => task.parentListId === listId)
-    .forEach(task => {
-        createTask(task);
-    });
+        .filter((task) => task.parentListId === listId)
+        .forEach(task => {
+            createTask(task);
+        });
 }

@@ -18,13 +18,21 @@ export function renderPage() {
   const { pathname: currentUrl } = window.location;
 
   if (currentUrl === REGISTRATION_URL) {
-    renderRegistration();
+    if (currentUser.userData !== null) {
+      navigateToUrl('/');
+    } else {
+      renderRegistration();
+    }
 
     return;
   }
 
   if (currentUrl === LOGIN_URL) {
-    renderLogin();
+    if (currentUser.userData !== null) {
+      navigateToUrl('/');
+    } else {
+      renderLogin();
+    }
 
     return;
   }
@@ -52,6 +60,7 @@ export function renderPage() {
     } else {
       renderList();
     }
+
   }
 }
 
