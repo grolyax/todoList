@@ -36,6 +36,31 @@ class TaskList {
             return task;
         });
     }
+
+    swap(firstId, secondId) {
+        let firstIndex = this.tasks.findIndex(task => task.id === firstId);
+        let secondIndex = this.tasks.findIndex(task => task.id === secondId);
+        
+    if (firstIndex > secondIndex) {
+        const temp = firstIndex;
+        firstIndex = secondIndex;
+        secondIndex = temp;
+    }
+
+    if (firstIndex == secondIndex) {
+        return;
+    }
+
+
+        this.tasks = this.tasks
+            .slice(0, firstIndex)
+            .concat(
+                this.tasks[secondIndex], 
+                this.tasks.slice(firstIndex +1, secondIndex),
+                this.tasks[firstIndex],
+                this.tasks.slice(secondIndex+ 1)
+            );
+    }
 }
 
 const tasks = JSON.parse(storageService.get('tasks'));
@@ -43,4 +68,3 @@ const tasks = JSON.parse(storageService.get('tasks'));
 const taskList = new TaskList(tasks ? tasks : []);
 
 export default taskList;
-

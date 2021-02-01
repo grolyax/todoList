@@ -6,9 +6,8 @@ import storageService from '../storage-service.js';
 import currentUser from '../current-user.js';
 
 import taskList from '../tasks.js';
-import { generateId, getListIdByUrl } from '../utils.js';
-
-
+import { generateId, getListIdByUrl, getId } from '../utils.js';
+import renderTasks from '../render/render-tasks.js';
 
 
 export function createTask(task) {
@@ -64,7 +63,7 @@ export default function addTask(event) {
         id: generateId(taskList.tasks),
         parentListId: getListIdByUrl(),
         text: todoText,
-        checked: false,
+        checked: false
     };
 
     taskList.add(newTask); // создаётся новый объект с задачей и добавляем в массив
